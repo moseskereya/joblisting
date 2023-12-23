@@ -13,6 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table as TablesTable;
 use Filament\Widgets\StatsOverviewWidget\Card;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -22,7 +23,6 @@ class ListingsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
     protected static ?string $navigationGroup = 'Jobs';
-    protected int | string | array $columnSpan = 'full';
 
     public static function form(Form $form): Form
     {
@@ -53,7 +53,7 @@ class ListingsResource extends Resource
                         'Laravel' => 'Laravel',
                          'Backend' => 'Backend',
                          'Frontend' => 'Frontend', 
-                        'JavaScript' => 'JavaScript', 
+                         'JavaScript' => 'JavaScript', 
                          'CSS' =>' CSS', 
                          'HTML'=> 'HTML' ,
                          'Design' => 'Design',
@@ -66,8 +66,7 @@ class ListingsResource extends Resource
                     ->searchable()
                     ->preload(),
                     Forms\Components\TextInput::make('email')
-                    ->required()
-                    ->reactive(),
+                    ->required(),
                     Forms\Components\TextInput::make('website')
                     ->required()
                     ->reactive(),
@@ -75,6 +74,8 @@ class ListingsResource extends Resource
                     ->required()
                     ->reactive()
                     ->maxLength(3000),
+                    Forms\Components\FileUpload::make('imageurl')
+                    ->required(),
                         ]), 
                     ]),
                 ]),
@@ -85,6 +86,8 @@ class ListingsResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('imageurl')
+                ->circular(),
                TextColumn::make('title')
                ->searchable()
                ->sortable(),

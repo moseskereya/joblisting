@@ -9,6 +9,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListListings extends ListRecords
 {
     protected static string $resource = ListingsResource::class;
+    protected int | string | array $columnSpan = 'full';
 
     protected function getActions(): array
     {

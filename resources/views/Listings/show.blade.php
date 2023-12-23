@@ -36,7 +36,7 @@
                     <a
                         href={{$listing->website}}
                         target="_blank"
-                        class="block bg-red- text-white py-2 rounded-xl hover:opacity-80"
+                        class="block bg-red-500 text-white py-2 rounded-xl hover:opacity-80"
                         ><i class="fa-solid fa-globe"></i> Visit
                         Website</a
                     >

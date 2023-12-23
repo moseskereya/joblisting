@@ -9,7 +9,7 @@ class ListingsController extends Controller
 {
     public function index()
     {
-        $listings = listings::orderBy('id', 'desc')->paginate(14);
+        $listings = listings::orderBy('id', 'desc')->paginate(8);
         return view('Listings.index', compact('listings'));
     }
     
